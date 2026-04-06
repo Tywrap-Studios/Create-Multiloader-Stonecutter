@@ -1,16 +1,17 @@
 //? if neoforge {
-/*package com.example.template.platforms.neoforge;
+package com.example.template.platforms.neoforge;
 
-import com.example.template.TempLateInit;
 import com.example.template.ModPlatform;
+import com.example.template.TempLateInit;
+
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 
-@Mod(/^$ annotation_id^/"template")
+@Mod(/*$ annotation_id*/"template")
 public class TempLateNeoForge {
-	public TempLateNeoForge() {
-		TempLateInit.entrypoint(new NeoForgePlatform());
-	}
+    public TempLateNeoForge() {
+        TempLateInit.entrypoint(new NeoForgePlatform());
+    }
 
     public static class NeoForgePlatform implements ModPlatform {
         @Override
@@ -24,4 +25,4 @@ public class TempLateNeoForge {
         }
     }
 }
-*///?}
+//?}
