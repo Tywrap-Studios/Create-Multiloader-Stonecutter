@@ -11,7 +11,7 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.5"
+    id("dev.kikugie.stonecutter") version "0.9"
 }
 
 stonecutter {
@@ -19,7 +19,7 @@ stonecutter {
     kotlinController = true
     shared {
         fun mc(loader: String, vararg versions: String) {
-            for (version in versions) vers("$version-$loader", version)
+            for (version in versions) version("$version-$loader", version)
         }
 
         mc("fabric", "1.20.1")
