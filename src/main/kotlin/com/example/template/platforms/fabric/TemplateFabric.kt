@@ -1,5 +1,5 @@
 //? if fabric {
-package com.example.template.platforms.fabric
+/*package com.example.template.platforms.fabric
 
 import com.example.template.ModPlatform
 import com.example.template.TemplateInit
@@ -21,4 +21,4 @@ class TemplateFabric : ModInitializer {
         }
     }
 }
-//?}
+*///?}

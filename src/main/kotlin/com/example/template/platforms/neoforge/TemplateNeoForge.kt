@@ -1,5 +1,5 @@
 //? if neoforge {
-/*package com.example.template.platforms.neoforge
+package com.example.template.platforms.neoforge
 
 import com.example.template.ModPlatform
 import com.example.template.TemplateInit
@@ -26,4 +26,4 @@ class TemplateNeoForge(bus: IEventBus, container: ModContainer, kotlinModContain
             return ModList.get().isLoaded(id)
         }
     }
-} *///?}
+} //?}

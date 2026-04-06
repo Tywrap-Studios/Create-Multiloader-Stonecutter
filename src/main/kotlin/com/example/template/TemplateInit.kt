@@ -24,6 +24,6 @@ object TemplateInit {
         PLATFORM = platform
         LOGGER.info("Started mod in ${PLATFORM.getModLoader()} loader")
         //? if fabric
-        REGISTRATE.register();
+        //REGISTRATE.register();
     }
 }

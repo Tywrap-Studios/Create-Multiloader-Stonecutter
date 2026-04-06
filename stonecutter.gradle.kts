@@ -5,7 +5,7 @@ plugins {
     id("me.modmuss50.mod-publish-plugin") version "0.8.4" apply false
 }
 
-stonecutter active "1.20.1-fabric"
+stonecutter active "1.21.1-neoforge"
 
 stonecutter parameters {
     swaps["mod_id"] = "\"${property("mod.id")}\""
