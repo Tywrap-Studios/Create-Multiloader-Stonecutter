@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "*"
 license = "CC0"
-issueTrackerURL="https://AuthorExample/TempLate/issues"
+issueTrackerURL = "https://AuthorExample/TempLate/issues"
 
 [[mods]]
 modId = "${id}"
@@ -19,8 +19,8 @@ config = "${id}-common.mixins.json"
 config = "${id}-neoforge.mixins.json"
 
 [[dependencies.${id}]]
-modId="create"
-type="required"
-versionRange="[6.0.9,6.1.0)"
-ordering="NONE"
-side="BOTH"
+modId = "create"
+type = "required"
+versionRange = "[6.0.9,6.1.0)"
+ordering = "NONE"
+side = "BOTH"

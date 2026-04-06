@@ -10,6 +10,7 @@ by utilising Stonecutter logic and Architectury Loom.
 ## Setup
 
 There are three default versions defined:
+
 - 1.20.1, Fabric (depends on Create 6.0.8.1)
 - 1.20.1, LexForge (depends on Create 6.0.8-289)
 - 1.21.1, NeoForge (depends on Create 6.0.9-215)
@@ -21,8 +22,9 @@ If you want to change versions or add them, you can do so in
 > The build script being Kotlin DSL does not mean you need to use Kotlin to code your addon!
 
 ## C# Script
+
 The base template came with a C# script to automatically change
-template names, however, it may not fully work anymore due to 
+template names, however, it may not fully work anymore due to
 slight modifications made. Always check the output of autonomous
 actions.
 
@@ -45,6 +47,7 @@ After configuration, you can use the `chiseledPublishMods` task.
 ## Template usage
 
 The template comes with some predefined things:
+
 - Common and platform specific entrypoints;
 - `ModPlatform` interface for platform-specific code;
 - Example mixin (clientside);
@@ -52,6 +55,7 @@ The template comes with some predefined things:
 - A logo pack in order to aid you in creating a Create-styled logo.
 
 ## More information
+
 For more information, see the respective documentations of
 [Stonecutter](https://stonecutter.kikugie.dev),
 [Architectury Loom](https://docs.architectury.dev/loom/introduction)
