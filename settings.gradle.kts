@@ -31,4 +31,4 @@ stonecutter {
     create(rootProject)
 }
 
-rootProject.name = "Create-Multiloader-Stonecutter"
+rootProject.name = "Create-Multiloader-Stonecutter-Kt"
