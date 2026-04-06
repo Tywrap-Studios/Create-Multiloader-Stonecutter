@@ -4,7 +4,6 @@ plugins {
     id("dev.architectury.loom")
     id("architectury-plugin")
     id("me.modmuss50.mod-publish-plugin")
-    id("com.gradleup.shadow")
 }
 
 val minecraft = stonecutter.current.version
@@ -159,9 +158,7 @@ tasks.shadowJar {
 
 tasks.remapJar {
     injectAccessWidener = true
-    input = tasks.shadowJar.get().archiveFile
     archiveClassifier = null
-    dependsOn(tasks.shadowJar)
 }
 
 tasks.jar {
