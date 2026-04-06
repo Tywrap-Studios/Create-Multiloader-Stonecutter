@@ -1,14 +1,12 @@
 //? if forge {
 /*package com.example.template.platforms.forge;
 
-import com.example.template.ConfigScreen;
 import com.example.template.TempLateInit;
 import com.example.template.ModPlatform;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod("template")
+@Mod(/^$ annotation_id^/"template")
 public class TempLateForge {
 	public TempLateForge() {
 		TempLateInit.entrypoint(new ForgePlatform());
@@ -16,13 +14,13 @@ public class TempLateForge {
 
 	public static class ForgePlatform implements ModPlatform {
 		@Override
-		public String getModloader() {
+		public String getModLoader() {
 			return "LexForge";
 		}
 
 		@Override
-		public boolean isModLoaded(String modId) {
-			return ModList.get().isLoaded(modId);
+		public boolean isModLoaded(String id) {
+			return ModList.get().isLoaded(id);
 		}
 	}
 }

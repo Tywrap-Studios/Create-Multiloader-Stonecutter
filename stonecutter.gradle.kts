@@ -6,7 +6,7 @@ plugins {
     id("me.modmuss50.mod-publish-plugin") version "0.8.4" apply false
 }
 
-stonecutter active "1.21.1-neoforge"
+stonecutter active "1.20.1-fabric" /* [SC] DO NOT EDIT */
 stonecutter.automaticPlatformConstants = true
 
 // Builds every version into `build/libs/{mod.version}/{loader}`
@@ -46,5 +46,6 @@ for (it in stonecutter.tree.nodes) {
 }
 
 stonecutter parameters {
-    swaps["mod_id"] = "\"${property("mod.id")}\""
+    swaps["mod_id"] = "\"${property("mod.id")}\";"
+    swaps["annotation_id"] = "\"${property("mod.id")}\")"
 }

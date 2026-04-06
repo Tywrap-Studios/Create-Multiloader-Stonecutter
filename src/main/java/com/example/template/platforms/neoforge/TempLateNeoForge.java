@@ -1,12 +1,12 @@
 //? if neoforge {
-package com.example.template.platforms.neoforge;
+/*package com.example.template.platforms.neoforge;
 
 import com.example.template.TempLateInit;
 import com.example.template.ModPlatform;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 
-@Mod("template")
+@Mod(/^$ annotation_id^/"template")
 public class TempLateNeoForge {
 	public TempLateNeoForge() {
 		TempLateInit.entrypoint(new NeoForgePlatform());
@@ -19,9 +19,9 @@ public class TempLateNeoForge {
         }
 
         @Override
-        public boolean isModLoaded(String modId) {
-            return ModList.get().isLoaded(modId);
+        public boolean isModLoaded(String id) {
+            return ModList.get().isLoaded(id);
         }
     }
 }
-//?}
+*///?}

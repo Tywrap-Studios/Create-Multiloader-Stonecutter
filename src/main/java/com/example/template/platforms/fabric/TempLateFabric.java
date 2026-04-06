@@ -1,5 +1,5 @@
 //? if fabric {
-/*package com.example.template.platforms.fabric;
+package com.example.template.platforms.fabric;
 
 import com.example.template.ModPlatform;
 import net.fabricmc.api.ModInitializer;
@@ -11,17 +11,17 @@ public class TempLateFabric implements ModInitializer {
 	public void onInitialize() {
 		TempLateInit.entrypoint(new FabricPlatform());
 	}
-	public static class FabricPlatform implements ModPlatform{
 
+	public static class FabricPlatform implements ModPlatform{
 		@Override
-		public String getModloader() {
+		public String getModLoader() {
 			return "Fabric";
 		}
 
 		@Override
-		public boolean isModLoaded(String modloader) {
-			return FabricLoader.getInstance().isModLoaded(modloader);
+		public boolean isModLoaded(String id) {
+			return FabricLoader.getInstance().isModLoaded(id);
 		}
 	}
 }
-*///?}
+//?}
