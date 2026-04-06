@@ -9,7 +9,7 @@
   ],
   "contact": {
   },
-  "license": "LGPLv3",
+  "license": "CC0",
   "icon": "assets/${id}/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -26,6 +26,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.15",
-    "minecraft": "${minecraft}"
+    "minecraft": "${minecraft}",
+    "create": "${create}"
   }
 }

@@ -20,52 +20,68 @@ architectury.common(stonecutter.tree.branches.mapNotNull {
     if (stonecutter.current.project !in it) null
     else it.prop("loom.platform")
 })
+
 repositories {
     maven("https://maven.neoforged.net/releases/")
-
-    //modmenu
     maven("https://maven.terraformersmc.com/")
-    //placeholder api (modmenu depencency)
     maven("https://maven.nucleoid.xyz/")
+    maven("https://maven.createmod.net") // Create, Ponder, Flywheel
+    maven("https://mvn.devos.one/releases") // Porting Lib releases
+    maven("https://mvn.devos.one/snapshots") // Create and several dependencies
+    maven("https://maven.ithundxr.dev/mirror") // Registrate
+    maven("https://maven.ithundxr.dev/snapshots") // Registrate
+    maven("https://maven.jamieswhiteshirt.com/libs-release") // Reach Entity Attributes
+    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven") // Forge Config API Port
 }
+
 dependencies {
     minecraft("com.mojang:minecraft:$minecraft")
     mappings(loom.officialMojangMappings())
 
     if (loader == "fabric") {
         modImplementation("net.fabricmc:fabric-loader:${mod.dep("fabric_loader")}")
-//        mappings("net.fabricmc:yarn:$minecraft+build.${mod.dep("yarn_build")}:v2")
-        modImplementation("com.terraformersmc:modmenu:${mod.dep("modmenu_version")}")
 
         //some features (like automatic resource loading from non vanilla namespaces) work only with fabric API installed
         //for example translations from assets/modid/lang/en_us.json won't be working, same stuff with textures
         //but we keep runtime only to not accidentally depend on fabric's api, because it doesn't exist in neo/forge
         modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${mod.dep("fabric_version")}")
 
+        // Create
+        modImplementation("com.simibubi.create:create-fabric:${mod.dep("create")}")
     }
+
     if (loader == "forge") {
         "forge"("net.minecraftforge:forge:${minecraft}-${mod.dep("forge_loader")}")
-//        mappings("net.fabricmc:yarn:$minecraft+build.${mod.dep("yarn_build")}:v2")
 
         "io.github.llamalad7:mixinextras-forge:${mod.dep("mixin_extras")}".let {
             implementation(it)
             include(it)
         }
+
+        // Create
+        modImplementation("com.simibubi.create:create-$minecraft:${mod.dep("create")}:slim") { isTransitive = false }
+        modImplementation("net.createmod.ponder:Ponder-Forge-$minecraft:${mod.dep("ponder")}")
+        modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-$minecraft:${mod.dep("flywheel")}")
+        modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-$minecraft:${mod.dep("flywheel")}")
+        modImplementation("com.tterrag.registrate:Registrate:${mod.dep("registrate")}")
+        compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1")!!)
+        implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
     }
+
     if (loader == "neoforge") {
         "neoForge"("net.neoforged:neoforge:${mod.dep("neoforge_loader")}")
-//        mappings(loom.layered {
-//            mappings("net.fabricmc:yarn:$minecraft+build.${mod.dep("yarn_build")}:v2")
-//            mod.dep("neoforge_patch").takeUnless { it.startsWith('[') }?.let {
-//                mappings("dev.architectury:yarn-mappings-patch-neoforge:$it")
-//            }
-//        })
 
+        // Create
+        implementation("com.simibubi.create:create-$minecraft:${mod.dep("create")}:slim") { isTransitive = false }
+        implementation("net.createmod.ponder:ponder-neoforge:${mod.dep("ponder")}+mc$minecraft")
+        compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-$minecraft:${mod.dep("flywheel")}")
+        runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-$minecraft:${mod.dep("flywheel")}")
+        implementation("com.tterrag.registrate:Registrate:${mod.dep("registrate")}")
     }
 }
 
 loom {
-    accessWidenerPath = rootProject.file("src/main/resources/template.accesswidener")
+    accessWidenerPath = rootProject.file("src/main/resources/${mod.id}.accesswidener")
 
     decompilers {
         get("vineflower").apply { // Adds names to lambdas - useful for mixins
@@ -74,8 +90,8 @@ loom {
     }
     if (loader == "forge") {
         forge.mixinConfigs(
-            "template-common.mixins.json",
-            "template-forge.mixins.json",
+            "${mod.id}-common.mixins.json",
+            "${mod.id}-forge.mixins.json",
         )
     }
 }
@@ -86,6 +102,7 @@ val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
+
 publishMods {
     val modrinthToken = localProperties.getProperty("publish.modrinthToken", "")
     val curseforgeToken = localProperties.getProperty("publish.curseforgeToken", "")
@@ -177,7 +194,8 @@ tasks.processResources {
         "id" to mod.id,
         "name" to mod.name,
         "version" to mod.version,
-        "minecraft" to mod.prop("mc_dep_fabric")
+        "minecraft" to mod.prop("mc_dep_fabric"),
+        "create" to mod.dep("create")
     )
     properties(
         listOf("META-INF/mods.toml", "pack.mcmeta"),

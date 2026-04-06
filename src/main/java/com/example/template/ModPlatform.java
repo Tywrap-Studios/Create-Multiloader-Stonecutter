@@ -6,6 +6,6 @@ package com.example.template;
  */
 
 public interface ModPlatform {
-    String getModloader();
+    String getModLoader();
     boolean isModLoaded(String modloader);
 }

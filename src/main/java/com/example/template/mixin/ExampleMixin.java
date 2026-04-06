@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TitleScreen.class)
 public class ExampleMixin {
 
-    @Inject(method = "init",at=@At("HEAD"))
+    @Inject(method = "init", at=@At("HEAD"))
     void init(CallbackInfo ci){
-        TempLateInit.LOGGER.info("Stonecutter example mixin init in %s".formatted(TempLateInit.PLATFORM.getModloader()));
+        TempLateInit.LOGGER.info("Stonecutter example mixin init in %s".formatted(TempLateInit.PLATFORM.getModLoader()));
     }
 
 }

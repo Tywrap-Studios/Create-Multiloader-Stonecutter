@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 public class TempLateForge {
 	public TempLateForge() {
 		TempLateInit.entrypoint(new ForgePlatform());
-        MinecraftForge.registerConfigScreen(ConfigScreen::createConfigScreen);
 	}
+
 	public static class ForgePlatform implements ModPlatform {
 		@Override
 		public String getModloader() {
@@ -25,6 +25,5 @@ public class TempLateForge {
 			return ModList.get().isLoaded(modId);
 		}
 	}
-
 }
 *///?}

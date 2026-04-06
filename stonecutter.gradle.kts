@@ -5,7 +5,8 @@ plugins {
     id("com.gradleup.shadow") version "9.3.0" apply false
     id("me.modmuss50.mod-publish-plugin") version "0.8.4" apply false
 }
-stonecutter active "1.21.9-neoforge" /* [SC] DO NOT EDIT */
+
+stonecutter active "1.21.1-neoforge"
 stonecutter.automaticPlatformConstants = true
 
 // Builds every version into `build/libs/{mod.version}/{loader}`
@@ -21,8 +22,6 @@ stonecutter registerChiseled tasks.register("chiseledRunAllClients", stonecutter
     group = "project"
     ofTask("runClient")
 }
-
-
 
 // Builds loader-specific versions into `build/libs/{mod.version}/{loader}`
 for (it in stonecutter.tree.branches) {
@@ -44,4 +43,8 @@ for (it in stonecutter.tree.nodes) {
         group = "project"
         dependsOn("run$type")
     }
+}
+
+stonecutter parameters {
+    swaps["mod_id"] = "\"${property("mod.id")}\""
 }

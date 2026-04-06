@@ -1,50 +1,58 @@
-# Stonecutter template
+# Create mod addon Multiloader + Stonecutter template
 
-If you have some issues with template ping me (@JavaJumper) in [Kiku's realm](https://discord.gg/TBgNUCfryS) or official fabric discord
+This template is a fork of JavaJumper's base Multiloader + Stonecutter template.
+Please report issues to us first, then we can determine whether it is an issue
+with our modifications or the base template.
 
-This template allows you create multiloader multversion mod using stonecutter and architectury 
-
-It is based on my CustomCursor project
+This template allows you to create a Multiloader Multiversion Create addon
+by utilising Stonecutter logic and Architectury Loom.
 
 ## Setup
 
-To change versions check settings.gradle.kts
-Currently default versions are these,
-but you can easily add other versions if you need that
-- 1.20.1, fabric, lexforge
-- 1.20.4, fabric, neoforge
-- 1.21.1, fabric, neoforge
-- 1.21.3, fabric, neoforge
-- 1.21.4, fabric, neoforge
-- 1.21.5, fabric, neoforge
-- 1.21.6, fabric, neoforge
-- 1.21.7, fabric, neoforge
-- 1.21.8, fabric, neoforge
-- 1.21.9, fabric, neoforge
-- 1.21.10, fabric, neoforge
-- 1.21.11, fabric, neoforge
+There are three default versions defined:
+- 1.20.1, Fabric (depends on Create 6.0.8.1)
+- 1.20.1, LexForge (depends on Create 6.0.8-289)
+- 1.21.1, NeoForge (depends on Create 6.0.9-215)
 
-You can use c# script to automatically change all template names.
-Open RenameTemplate.cs, change names in replacements array and run "dotnet run" in this directory
-I would highly recommend to do this before opening project in your IDE, and then remove all c# related files from project
-(obj and bin folders, .csproj and script itself). Also you can remove c# stuff from .gitignore (there is comment for that)
+If you want to change versions or add them, you can do so in
+`settings.gradle.kts` using Stonecutter.
 
+> [!NOTE]
+> The build script being Kotlin DSL does not mean you need to use Kotlin to code your addon!
+
+## C# Script
+The base template came with a C# script to automatically change
+template names, however, it may not fully work anymore due to 
+slight modifications made. Always check the output of autonomous
+actions.
+
+Open RenameTemplate.cs, change the names in the replacements array and run "dotnet run"
+in this directory.
+It is highly recommended to do this before opening the project in your IDE
+to then remove all C# related files from the project (obj and bin folders, .csproj and the script itself).
+Afterwards, you can also remove the related C# stuff from the .gitignore (there's a comment to indicate
+what is safe to remove).
 
 ## Build tools usage
 
-To start current active version use runActive task
+To start current active version use the `runActive` task
 
-For testing all versions you can use chiseledRunAllClients, it runs all possible version and loader variants (in random(?) order)
+For testing all versions you can use `chiseledRunAllClients`, it runs all possible version and loader variants.
 
-Also template had publishing set up, you need to specify project id for modrinth and curseforge in gradle.properties, and tokens for these sites in local.properties (it is gitignored, check local.properties.example). After that use chiseledPublishMods task
+The template also has the publishing plugin. You can configure it as needed.
+After configuration, you can use the `chiseledPublishMods` task.
 
 ## Template usage
 
-Template already has some code setup: 
-- common and platform specific entrypoints
-- ModPlatform interface for platform specific code
-- example config screen with mod menu integration 
-- example mixin (clientside)
-- class for simple file IO 
-- common entrypoint with logger, modid, ModPlatform object instance
-- en_us lang file
+The template comes with some predefined things:
+- Common and platform specific entrypoints;
+- `ModPlatform` interface for platform-specific code;
+- Example mixin (clientside);
+- Common entrypoint with Logger, Mod ID, and a `ModPlatform` instance;
+- A logo pack in order to aid you in creating a Create-styled logo.
+
+## More information
+For more information, see the respective documentations of
+[Stonecutter](https://stonecutter.kikugie.dev),
+[Architectury Loom](https://docs.architectury.dev/loom/introduction)
+and [Create](https://wiki.createmod.net/developers/)
