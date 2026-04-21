@@ -2,8 +2,10 @@
 /*package com.example.template.platforms.forge;
 
 import com.example.template.ModPlatform;
-import com.example.template.TemplateInit;
+import com.example.template.TempLateInit;
+import com.example.template.platforms.forge.data.ForgeDatagen;
 
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -16,8 +18,11 @@ import org.jetbrains.annotations.NotNull;
 @Mod(/^$ annotation_id^/"template")
 public class TempLateForge {
     public TempLateForge() {
-        TemplateInit.REGISTRATE.registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
-        TemplateInit.entrypoint(new ForgePlatform());
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        TempLateInit.REGISTRATE.registerEventListeners(bus);
+        // Uncomment for datagen
+//        bus.addListener(ForgeDatagen::onGatherData);
+        TempLateInit.entrypoint(new ForgePlatform());
     }
 
     public static class ForgePlatform implements ModPlatform {
