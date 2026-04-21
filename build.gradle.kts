@@ -175,16 +175,6 @@ java {
     sourceCompatibility = java
 }
 
-val shadowBundle: Configuration by configurations.creating {
-    isCanBeConsumed = false
-    isCanBeResolved = true
-}
-
-tasks.shadowJar {
-    configurations = listOf(shadowBundle)
-    archiveClassifier = "dev-shadow"
-}
-
 tasks.remapJar {
     injectAccessWidener = true
     archiveClassifier = null
