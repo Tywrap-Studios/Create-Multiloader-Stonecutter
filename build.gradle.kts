@@ -1,6 +1,7 @@
 import java.util.*
 
 plugins {
+    kotlin("jvm") version "2.3.20"
     id("dev.architectury.loom")
     id("architectury-plugin")
     id("me.modmuss50.mod-publish-plugin")
@@ -31,6 +32,7 @@ repositories {
     maven("https://maven.ithundxr.dev/snapshots") // Registrate
     maven("https://maven.jamieswhiteshirt.com/libs-release") // Reach Entity Attributes
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven") // Forge Config API Port
+    maven("https://repo.nyon.dev/releases") // KLF
 }
 
 dependencies {
@@ -44,6 +46,7 @@ dependencies {
         //for example translations from assets/modid/lang/en_us.json won't be working, same stuff with textures
         //but we keep runtime only to not accidentally depend on fabric's api, because it doesn't exist in neo/forge
         modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${mod.dep("fabric_version")}")
+        modImplementation("net.fabricmc:fabric-language-kotlin:1.13.10+kotlin.2.3.20")
 
         // Create
         modImplementation("com.simibubi.create:create-fabric:${mod.dep("create")}")
@@ -57,6 +60,8 @@ dependencies {
             include(it)
         }
 
+        implementation("dev.nyon:KotlinLangForge:${mod.dep("klf")}+$loader")
+
         // Create
         modImplementation("com.simibubi.create:create-$minecraft:${mod.dep("create")}:slim") { isTransitive = false }
         modImplementation("net.createmod.ponder:Ponder-Forge-$minecraft:${mod.dep("ponder")}")
@@ -69,6 +74,8 @@ dependencies {
 
     if (loader == "neoforge") {
         "neoForge"("net.neoforged:neoforge:${mod.dep("neoforge_loader")}")
+
+        implementation("dev.nyon:KotlinLangForge:${mod.dep("klf")}+$loader")
 
         // Create
         implementation("com.simibubi.create:create-$minecraft:${mod.dep("create")}:slim") { isTransitive = false }
@@ -168,11 +175,19 @@ publishMods {
     }
 }
 
+val requiredJava = if (stonecutter.eval(minecraft, ">=1.20.5")) JavaVersion.VERSION_21 else JavaVersion.VERSION_17
+
 java {
     withSourcesJar()
-    val java = if (stonecutter.eval(minecraft, ">=1.20.5")) JavaVersion.VERSION_21 else JavaVersion.VERSION_17
-    targetCompatibility = java
-    sourceCompatibility = java
+    targetCompatibility = requiredJava
+    sourceCompatibility = requiredJava
+}
+
+kotlin {
+    jvmToolchain(requiredJava.majorVersion.toInt())
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(requiredJava.majorVersion))
+    }
 }
 
 tasks.remapJar {

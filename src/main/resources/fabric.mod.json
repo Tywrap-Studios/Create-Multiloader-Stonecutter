@@ -14,7 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.template.platforms.fabric.TempLateFabric"
+      {
+        "adapter": "kotlin",
+        "value": "com.example.template.platforms.fabric.TemplateFabric"
+      }
     ]
   },
   "mixins": [
@@ -23,6 +26,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.15",
+    "fabric-language-kotlin": "*",
     "minecraft": "${minecraft}",
     "create": "${create}"
   }
