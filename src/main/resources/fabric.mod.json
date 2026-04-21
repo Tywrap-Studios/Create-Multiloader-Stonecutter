@@ -15,9 +15,6 @@
   "entrypoints": {
     "main": [
       "com.example.template.platforms.fabric.TempLateFabric"
-    ],
-    "modmenu": [
-      "com.example.template.platforms.fabric.ModMenuIntegration"
     ]
   },
   "mixins": [

@@ -23,6 +23,6 @@ public class TempLateInit {
         TempLateInit.PLATFORM = platform;
         LOGGER.info("Started mod in %s loader".formatted(TempLateInit.PLATFORM.getModLoader()));
         //? if fabric
-        /*REGISTRATE.register();*/
+        //REGISTRATE.register();
     }
 }

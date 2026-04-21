@@ -80,6 +80,10 @@ dependencies {
     }
 }
 
+// Uncomment for datagen
+//val generatedSources = file("src/generated/resources")
+//val existingSources = file("../../src/main/resources")
+
 loom {
     accessWidenerPath = rootProject.file("src/main/resources/${mod.id}.accesswidener")
 
@@ -94,8 +98,33 @@ loom {
             "${mod.id}-forge.mixins.json",
         )
     }
+    // Uncomment for datagen
+//    if (loader == "neoforge" || loader == "forge") {
+//        runs {
+//            create("data") {
+//                data()
+//                programArgs(
+//                    "--mod", mod.id,
+//                    "--output", generatedSources.absolutePath,
+//                    "--existing", existingSources.absolutePath,
+//                    "--all"
+//                )
+//            }
+//        }
+//    }
 }
 
+// Uncomment for datagen
+//fabricApi {
+//    configureDataGeneration {
+//        client = true
+//        modId = mod.id
+//    }
+//}
+//
+//sourceSets.main {
+//    resources.srcDir(generatedSources)
+//}
 
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
