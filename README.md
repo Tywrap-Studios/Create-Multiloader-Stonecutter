@@ -1,4 +1,4 @@
-# Create mod addon Multiloader + Stonecutter template
+# Create mod addon Kotlin Multiloader + Stonecutter template
 
 This template is a fork of our base Multiloader + Stonecutter template.
 Please report issues to us first, then we can determine whether it is an issue
