@@ -153,7 +153,6 @@ publishMods {
         targets.forEach(minecraftVersions::add)
         if (loader == "fabric") {
             requires("fabric-api")
-            optional("modmenu")
         }
     }
 
@@ -163,7 +162,6 @@ publishMods {
         targets.forEach(minecraftVersions::add)
         if (loader == "fabric") {
             requires("fabric-api")
-            optional("modmenu")
         }
     }
 }
@@ -186,23 +184,11 @@ tasks.jar {
 }
 
 val buildAndCollect = tasks.register<Copy>("buildAndCollect") {
-    group = "versioned"
-    description = "Must run through 'chiseledBuild'"
+    group = "build"
+    description = "Builds all versions and outputs them to a structured folder."
     from(tasks.remapJar.get().archiveFile, tasks.remapSourcesJar.get().archiveFile)
     into(rootProject.layout.buildDirectory.file("libs/${mod.version}/$loader"))
     dependsOn("build")
-}
-
-if (stonecutter.current.isActive) {
-    rootProject.tasks.register("buildActive") {
-        group = "project"
-        dependsOn(buildAndCollect)
-    }
-
-    rootProject.tasks.register("runActive") {
-        group = "project"
-        dependsOn(tasks.named("runClient"))
-    }
 }
 
 tasks.processResources {
@@ -228,9 +214,4 @@ tasks.processResources {
         "version" to mod.version,
         "minecraft" to mod.prop("mc_dep_forgelike")
     )
-}
-
-tasks.build {
-    group = "versioned"
-    description = "Must run through 'chiseledBuild'"
 }
