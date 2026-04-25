@@ -1,6 +1,6 @@
 package com.example.template.mixin;
 
-import com.example.template.TemplateInit;
+import com.example.template.TempLateInit;
 
 import net.minecraft.client.gui.screens.TitleScreen;
 
@@ -14,7 +14,7 @@ public class ExampleMixin {
 
     @Inject(method = "init", at = @At("HEAD"))
     void init(CallbackInfo ci) {
-        TemplateInit.LOGGER.info("Stonecutter example mixin init in %s".formatted(TemplateInit.PLATFORM.getModLoader()));
+        TempLateInit.LOGGER.info("Stonecutter example mixin init in %s".formatted(TempLateInit.PLATFORM.getModLoader()));
     }
 
 }

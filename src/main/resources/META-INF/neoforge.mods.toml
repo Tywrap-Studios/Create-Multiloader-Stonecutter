@@ -1,4 +1,4 @@
-modLoader = "klf"
+modLoader = "javafml"
 loaderVersion = "[1,)"
 license = "CC0"
 issueTrackerURL = "https://AuthorExample/TempLate/issues"

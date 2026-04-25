@@ -1,23 +1,25 @@
 # Create mod addon Kotlin Multiloader + Stonecutter template
 
-This template is a fork of our base Multiloader + Stonecutter template.
+This template is a fork of JavaJumper's base Multiloader + Stonecutter template.
 Please report issues to us first, then we can determine whether it is an issue
 with our modifications or the base template.
 
 This template allows you to create a Multiloader Multiversion Create addon
-by utilising Stonecutter logic and Architectury Loom and enables you
-to use Kotlin instead of Java.
+by utilising Stonecutter logic and Architectury Loom.
 
 ## Setup
 
 There are three default versions defined:
 
 - 1.20.1, Fabric (depends on Create 6.0.8.1)
-- 1.20.1, LexForge (depends on Create 6.0.8-289, may have issues properly using Kotlin!)
+- 1.20.1, LexForge (depends on Create 6.0.8-289)
 - 1.21.1, NeoForge (depends on Create 6.0.9-215)
 
 If you want to change versions or add them, you can do so in
 `settings.gradle.kts` using Stonecutter.
+
+> [!NOTE]
+> The build script being Kotlin DSL does not mean you need to use Kotlin to code your addon!
 
 ## C# Script
 
@@ -50,6 +52,7 @@ The template comes with some predefined things:
 - `ModPlatform` interface for platform-specific code;
 - Example mixin (clientside);
 - Common entrypoint with Logger, Mod ID, and a `ModPlatform` instance;
+- Prerequisites to set up data generation;
 - A logo pack in order to aid you in creating a Create-styled logo.
 
 ## More information

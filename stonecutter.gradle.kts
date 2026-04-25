@@ -8,7 +8,7 @@ plugins {
 stonecutter active "1.21.1-neoforge"
 
 stonecutter parameters {
-    swaps["mod_id"] = "\"${property("mod.id")}\""
+    swaps["mod_id"] = "\"${property("mod.id")}\";"
     swaps["annotation_id"] = "\"${property("mod.id")}\")"
 
     val loader = node.metadata.project.substringAfter('-')
